@@ -22,5 +22,4 @@ public class Work {
 
     private LocalDate date;
 
-
 }
