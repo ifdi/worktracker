@@ -9,7 +9,7 @@ import javax.persistence.Table;
 public class Project {
 
     @Id
-    private int id;
+    private Integer id;
 
     private String name;
 }
