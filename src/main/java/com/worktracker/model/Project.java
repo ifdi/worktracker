@@ -16,5 +16,5 @@ public class Project {
     private String name;
 
     @OneToMany(mappedBy = "project")
-    List<Task> tasks;
+    private List<Task> tasks;
 }
