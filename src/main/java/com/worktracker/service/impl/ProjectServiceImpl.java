@@ -18,11 +18,12 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public void createProject(ProjectRequestDTO projectRequestDTO) {
+    public Project createProject(ProjectRequestDTO projectRequestDTO) {
         Project project = new Project();
         project.setId(projectRequestDTO.getId());
         project.setName(projectRequestDTO.getName());
-        projectRepository.save(project);
+
+        return projectRepository.save(project);
     }
 
     @Override
