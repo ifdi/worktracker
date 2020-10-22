@@ -6,5 +6,5 @@ public interface ProjectService {
 
     void createProject(ProjectRequestDTO projectRequestDTO);
 
-    void updateProjectName(Long id, String name);
+    void updateProjectName(Integer id, String name);
 }

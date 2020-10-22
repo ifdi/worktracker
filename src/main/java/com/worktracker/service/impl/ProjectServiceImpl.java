@@ -22,10 +22,15 @@ public class ProjectServiceImpl implements ProjectService {
         Project project = new Project();
         project.setId(projectRequestDTO.getId());
         project.setName(projectRequestDTO.getName());
+        projectRepository.save(project);
     }
 
     @Override
-    public void updateProjectName(Long id, String name) {
-        projectRepository.getProjectById(id).setName(name);
+    public void updateProjectName(Integer id, String name) {
+        Project project = projectRepository.findById(id).orElse(null);
+        if (project != null) {
+            project.setName(name);
+            projectRepository.save(project);
+        }
     }
 }

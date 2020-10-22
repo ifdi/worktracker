@@ -22,7 +22,7 @@ public class ProjectController {
     }
 
     @PutMapping("/{id}")
-    public void createProject(@PathVariable Long id, @RequestBody String name) {
-        projectService.updateProjectName(id, name);
+    public void createProject(@PathVariable Integer id, @RequestBody ProjectRequestDTO projectRequestDTO) {
+        projectService.updateProjectName(id, projectRequestDTO.getName());
     }
 }
