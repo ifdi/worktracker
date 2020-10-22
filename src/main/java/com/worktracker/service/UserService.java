@@ -2,7 +2,6 @@ package com.worktracker.service;
 
 import com.worktracker.model.User;
 import com.worktracker.model.dto.UserRequestDTO;
-import com.worktracker.model.dto.UserResponseDTO;
 
 import java.util.List;
 
