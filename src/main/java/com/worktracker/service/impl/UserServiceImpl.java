@@ -3,10 +3,8 @@ package com.worktracker.service.impl;
 import com.worktracker.model.TypeUser;
 import com.worktracker.model.User;
 import com.worktracker.model.dto.UserRequestDTO;
-import com.worktracker.model.dto.UserResponseDTO;
 import com.worktracker.repository.UserRepository;
 import com.worktracker.service.UserService;
-import org.hibernate.usertype.UserType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,6 +41,4 @@ public class UserServiceImpl implements UserService {
     public List<User> getEmployees() {
         return userRepository.findAllByTypeUser(TypeUser.EMPLOYEE);
     }
-
-
 }

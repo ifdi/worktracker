@@ -48,5 +48,4 @@ public class UserResponseDTO {
     public void setType(TypeUser type) {
         this.type = type;
     }
-
 }

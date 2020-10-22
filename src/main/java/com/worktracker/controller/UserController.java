@@ -36,5 +36,4 @@ public class UserController {
     public List<User> getEmployees() {
         return userService.getEmployees();
     }
-
 }
