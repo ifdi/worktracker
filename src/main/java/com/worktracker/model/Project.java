@@ -17,4 +17,12 @@ public class Project {
 
     @OneToMany(mappedBy = "project")
     private List<Task> tasks;
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }
