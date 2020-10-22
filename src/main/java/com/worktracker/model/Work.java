@@ -21,5 +21,4 @@ public class Work {
     private double hours;
 
     private LocalDate date;
-
 }
