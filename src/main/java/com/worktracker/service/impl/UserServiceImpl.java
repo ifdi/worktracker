@@ -13,7 +13,7 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
 
-    public static final String DEFAULT_PASSWORD = "pass24ange";
+    private static final String DEFAULT_PASSWORD = "pass24ange";
     private final UserRepository userRepository;
 
     @Autowired
