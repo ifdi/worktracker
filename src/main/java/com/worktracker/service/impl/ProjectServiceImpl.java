@@ -7,6 +7,8 @@ import com.worktracker.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ProjectServiceImpl implements ProjectService {
 
@@ -33,5 +35,15 @@ public class ProjectServiceImpl implements ProjectService {
             project.setName(name);
             projectRepository.save(project);
         }
+    }
+
+    @Override
+    public Project getProject(Integer id) {
+        return projectRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public List<Project> getAllProjects() {
+        return projectRepository.findAll();
     }
 }
