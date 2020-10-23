@@ -25,4 +25,20 @@ public class Project {
     public void setName(String name) {
         this.name = name;
     }
+
+    public Integer getId() {
+        return this.id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
+    }
 }

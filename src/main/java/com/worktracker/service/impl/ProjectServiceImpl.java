@@ -1,11 +1,14 @@
 package com.worktracker.service.impl;
 
+import com.worktracker.exception.WorktrackerException;
 import com.worktracker.model.Project;
 import com.worktracker.model.dto.ProjectRequestDTO;
 import com.worktracker.repository.ProjectRepository;
 import com.worktracker.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ProjectServiceImpl implements ProjectService {
@@ -33,5 +36,16 @@ public class ProjectServiceImpl implements ProjectService {
             project.setName(name);
             projectRepository.save(project);
         }
+    }
+
+    @Override
+    public Project getProject(Integer id) {
+        return projectRepository.findById(id)
+                .orElseThrow(() -> new WorktrackerException("Project not found"));
+    }
+
+    @Override
+    public List<Project> getAllProjects() {
+        return projectRepository.findAll();
     }
 }

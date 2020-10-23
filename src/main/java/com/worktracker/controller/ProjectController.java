@@ -1,9 +1,15 @@
 package com.worktracker.controller;
 
+import com.worktracker.model.Project;
 import com.worktracker.model.dto.ProjectRequestDTO;
+import com.worktracker.model.dto.ProjectResponseDTO;
+import com.worktracker.model.dto.TaskResponseDTO;
 import com.worktracker.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/projects")
@@ -22,7 +28,22 @@ public class ProjectController {
     }
 
     @PutMapping("/{id}")
-    public void createProject(@PathVariable Integer id, @RequestBody ProjectRequestDTO projectRequestDTO) {
+    public void updateProjectName(@PathVariable Integer id, @RequestBody ProjectRequestDTO projectRequestDTO) {
         projectService.updateProjectName(id, projectRequestDTO.getName());
+    }
+
+    @GetMapping
+    public List<ProjectResponseDTO> getAllProjects() {
+        return projectService.getAllProjects().stream()
+                .map(ProjectResponseDTO::new)
+                .collect(Collectors.toList());
+    }
+
+    @GetMapping("/{id}/tasks")
+    public List<TaskResponseDTO> getTasks(@PathVariable Integer id) {
+        Project project = projectService.getProject(id);
+        return project.getTasks().stream()
+                .map(TaskResponseDTO::new)
+                .collect(Collectors.toList());
     }
 }
