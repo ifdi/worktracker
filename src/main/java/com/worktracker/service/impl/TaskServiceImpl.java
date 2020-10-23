@@ -1,6 +1,5 @@
 package com.worktracker.service.impl;
 
-import com.worktracker.exception.WorktrackerException;
 import com.worktracker.model.Project;
 import com.worktracker.model.Task;
 import com.worktracker.model.dto.TaskRequestDTO;
@@ -16,7 +15,6 @@ public class TaskServiceImpl implements TaskService {
     private final TaskRepository taskRepository;
     private final ProjectService projectService;
 
-
     @Autowired
     public TaskServiceImpl(TaskRepository taskRepository, ProjectService projectService) {
         this.taskRepository = taskRepository;
@@ -26,9 +24,6 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public Task createTask(TaskRequestDTO taskRequestDTO) {
         Project project = projectService.getProject(taskRequestDTO.getProjectID());
-        if (project == null) {
-            throw new WorktrackerException("Non-existent project ID");
-        }
         Task task = new Task();
         task.setProject(project);
         task.setName(taskRequestDTO.getName());
@@ -39,7 +34,7 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public void updateTaskInformation(Long id, String note) {
+    public void updateNote(Long id, String note) {
         Task task = taskRepository.findById(id).orElse(null);
         if (task != null) {
             task.setNote(note);

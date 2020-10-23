@@ -1,7 +1,6 @@
 package com.worktracker.service;
 
 import com.worktracker.model.Project;
-import com.worktracker.model.Task;
 import com.worktracker.model.dto.ProjectRequestDTO;
 
 import java.util.List;

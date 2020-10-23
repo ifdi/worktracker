@@ -25,7 +25,7 @@ public class TaskController {
     }
 
     @PutMapping("/{id}")
-    public void updateTaskInformation(@PathVariable Long id, @RequestBody TaskRequestDTO taskRequestDTO) {
-        taskService.updateTaskInformation(id, taskRequestDTO.getNote());
+    public void updateNote(@PathVariable Long id, @RequestBody TaskRequestDTO taskRequestDTO) {
+        taskService.updateNote(id, taskRequestDTO.getNote());
     }
 }

@@ -2,6 +2,7 @@ package com.worktracker.controller;
 
 import com.worktracker.model.Project;
 import com.worktracker.model.dto.ProjectRequestDTO;
+import com.worktracker.model.dto.ProjectResponseDTO;
 import com.worktracker.model.dto.TaskResponseDTO;
 import com.worktracker.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +33,10 @@ public class ProjectController {
     }
 
     @GetMapping
-    public List<Project> getAllProjects() {
-        return projectService.getAllProjects();
+    public List<ProjectResponseDTO> getAllProjects() {
+        return projectService.getAllProjects().stream()
+                .map(ProjectResponseDTO::new)
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/{id}/tasks")
