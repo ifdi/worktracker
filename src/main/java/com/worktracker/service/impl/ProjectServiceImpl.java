@@ -1,5 +1,6 @@
 package com.worktracker.service.impl;
 
+import com.worktracker.exception.WorktrackerException;
 import com.worktracker.model.Project;
 import com.worktracker.model.dto.ProjectRequestDTO;
 import com.worktracker.repository.ProjectRepository;
@@ -39,7 +40,8 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public Project getProject(Integer id) {
-        return projectRepository.findById(id).orElse(null);
+        return projectRepository.findById(id)
+                .orElseThrow(() -> new WorktrackerException("Project not found"));
     }
 
     @Override

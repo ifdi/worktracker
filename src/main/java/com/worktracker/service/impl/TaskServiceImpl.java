@@ -10,8 +10,6 @@ import com.worktracker.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class TaskServiceImpl implements TaskService {
 
@@ -47,13 +45,5 @@ public class TaskServiceImpl implements TaskService {
             task.setNote(note);
             taskRepository.save(task);
         }
-    }
-
-    @Override
-    public List<Task> getTasks(Project project) {
-        if (project == null) {
-            throw new WorktrackerException("Non-existent project");
-        }
-        return taskRepository.findAllByProject(project);
     }
 }
