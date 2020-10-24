@@ -21,4 +21,40 @@ public class Work {
     private double hours;
 
     private LocalDate date;
+
+    public void setTask(Task task) {
+        this.task = task;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setHours(double hours) {
+        this.hours = hours;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public Task getTask() {
+        return task;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public double getHours() {
+        return hours;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
 }

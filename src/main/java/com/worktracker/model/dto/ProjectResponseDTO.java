@@ -19,4 +19,5 @@ public class ProjectResponseDTO {
     public String getName() {
         return name;
     }
+
 }
