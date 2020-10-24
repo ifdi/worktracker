@@ -9,4 +9,5 @@ public interface TaskService {
 
     void updateNote(Long id, String note);
 
+    Task getTask(Long id);
 }

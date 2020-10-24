@@ -5,32 +5,16 @@ import com.worktracker.model.TypeTask;
 
 public class TaskResponseDTO {
 
-    private Long id;
-    private String name;
-    private TypeTask type;
-    private String note;
+    private final Long id;
+    private final String name;
+    private final TypeTask type;
+    private final String note;
 
     public TaskResponseDTO(Task task) {
-        this.setId(task.getId());
-        this.setName(task.getName());
-        this.setType(task.getTypeTask());
-        this.setNote(task.getNote());
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setType(TypeTask type) {
-        this.type = type;
-    }
-
-    public void setNote(String note) {
-        this.note = note;
+        this.id = task.getId();
+        this.name = task.getName();
+        this.type = task.getTypeTask();
+        this.note = task.getNote();
     }
 
     public Long getId() {

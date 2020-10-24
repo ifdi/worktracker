@@ -1,5 +1,6 @@
 package com.worktracker.service.impl;
 
+import com.worktracker.exception.WorktrackerException;
 import com.worktracker.model.Project;
 import com.worktracker.model.Task;
 import com.worktracker.model.dto.TaskRequestDTO;
@@ -40,5 +41,11 @@ public class TaskServiceImpl implements TaskService {
             task.setNote(note);
             taskRepository.save(task);
         }
+    }
+
+    @Override
+    public Task getTask(Long id) {
+        return taskRepository.findById(id)
+                .orElseThrow(() -> new WorktrackerException("Task not found"));
     }
 }

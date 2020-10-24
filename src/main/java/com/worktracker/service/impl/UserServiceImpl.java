@@ -1,5 +1,6 @@
 package com.worktracker.service.impl;
 
+import com.worktracker.exception.WorktrackerException;
 import com.worktracker.model.TypeUser;
 import com.worktracker.model.User;
 import com.worktracker.model.dto.UserRequestDTO;
@@ -40,5 +41,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> getEmployees() {
         return userRepository.findAllByTypeUser(TypeUser.EMPLOYEE);
+    }
+
+    @Override
+    public User getUser(Long id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new WorktrackerException("User not found"));
     }
 }
