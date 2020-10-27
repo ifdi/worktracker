@@ -1,6 +1,6 @@
 package com.worktracker.model;
 
-public enum TypeUser {
+public enum UserType {
     ADMIN,
     MANAGER,
     EMPLOYEE

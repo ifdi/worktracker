@@ -1,12 +1,12 @@
 package com.worktracker.model.dto;
 
-import com.worktracker.model.TypeTask;
+import com.worktracker.model.TaskType;
 
 public class TaskRequestDTO {
 
     private Integer projectID;
     private String name;
-    private TypeTask type;
+    private TaskType type;
     private String note;
 
     public Integer getProjectID() {
@@ -17,7 +17,7 @@ public class TaskRequestDTO {
         return name;
     }
 
-    public TypeTask getType() {
+    public TaskType getType() {
         return type;
     }
 

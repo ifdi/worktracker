@@ -1,8 +1,8 @@
 package com.worktracker.service.impl;
 
 import com.worktracker.exception.WorktrackerException;
-import com.worktracker.model.TypeUser;
 import com.worktracker.model.User;
+import com.worktracker.model.UserType;
 import com.worktracker.model.dto.UserRequestDTO;
 import com.worktracker.repository.UserRepository;
 import com.worktracker.service.UserService;
@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService {
         User user = new User();
         user.setName(userRequestDTO.getName());
         user.setEmail(userRequestDTO.getEmail());
-        user.setTypeUser(userRequestDTO.getType());
+        user.setUserType(userRequestDTO.getType());
         user.setPassword(DEFAULT_PASSWORD);
 
         return userRepository.save(user);
@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> getEmployees() {
-        return userRepository.findAllByTypeUser(TypeUser.EMPLOYEE);
+        return userRepository.findAllByUserType(UserType.EMPLOYEE);
     }
 
     @Override

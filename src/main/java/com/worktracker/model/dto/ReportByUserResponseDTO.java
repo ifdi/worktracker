@@ -1,6 +1,6 @@
 package com.worktracker.model.dto;
 
-import com.worktracker.model.TypeTask;
+import com.worktracker.model.TaskType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,14 +33,14 @@ public class ReportByUserResponseDTO {
         return projectHours;
     }
 
-    public void addTaskDTO(Long taskId, TypeTask typeTask, String taskName, Double taskHours) {
+    public void addTaskDTO(Long taskId, TaskType taskType, String taskName, Double taskHours) {
         for (ReportTaskDTO t : tasks) {
             if (t.getTaskId().equals(taskId)) {
                 t.addHours(taskHours);
                 return;
             }
         }
-        tasks.add(new ReportTaskDTO(taskId, typeTask, taskName, taskHours));
+        tasks.add(new ReportTaskDTO(taskId, taskType, taskName, taskHours));
     }
 
     private void calculateProjectHours() {

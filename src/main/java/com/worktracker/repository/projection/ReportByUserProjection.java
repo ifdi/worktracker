@@ -1,6 +1,6 @@
 package com.worktracker.repository.projection;
 
-import com.worktracker.model.TypeTask;
+import com.worktracker.model.TaskType;
 
 import java.time.LocalDate;
 
@@ -10,7 +10,7 @@ public interface ReportByUserProjection {
 
     String getProjectName();
 
-    TypeTask getTypeTask();
+    TaskType getTaskType();
 
     String getTaskName();
 

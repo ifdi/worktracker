@@ -15,7 +15,7 @@ public class Task {
     private String note;
 
     @Enumerated(EnumType.STRING)
-    private TypeTask typeTask;
+    private TaskType taskType;
 
     @ManyToOne
     @JoinColumn(name = "project_id")
@@ -33,8 +33,8 @@ public class Task {
         return note;
     }
 
-    public TypeTask getTypeTask() {
-        return typeTask;
+    public TaskType getTaskType() {
+        return taskType;
     }
 
     public Project getProject() {
@@ -49,8 +49,8 @@ public class Task {
         this.note = note;
     }
 
-    public void setTypeTask(TypeTask typeTask) {
-        this.typeTask = typeTask;
+    public void setTaskType(TaskType taskType) {
+        this.taskType = taskType;
     }
 
     public void setProject(Project project) {

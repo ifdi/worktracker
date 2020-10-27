@@ -17,7 +17,7 @@ public class User {
     private String password;
 
     @Enumerated(EnumType.STRING)
-    private TypeUser typeUser;
+    private UserType userType;
 
     public void setName(String name) {
         this.name = name;
@@ -31,8 +31,8 @@ public class User {
         this.password = password;
     }
 
-    public void setTypeUser(TypeUser typeUser) {
-        this.typeUser = typeUser;
+    public void setUserType(UserType userType) {
+        this.userType = userType;
     }
 
     public Long getId() {
@@ -47,7 +47,7 @@ public class User {
         return email;
     }
 
-    public TypeUser getTypeUser() {
-        return typeUser;
+    public UserType getUserType() {
+        return userType;
     }
 }

@@ -31,7 +31,7 @@ public class ReportServiceImpl implements ReportService {
         for (ReportByProjectProjection projection : projectionList) {
             if (!responseDTOMap.containsKey(projection.getTaskId())) {
                 ReportByProjectResponseDTO reportByProjectResponseDTO = new ReportByProjectResponseDTO();
-                reportByProjectResponseDTO.setTypeTask(projection.getTypeTask());
+                reportByProjectResponseDTO.setTaskType(projection.getTaskType());
                 reportByProjectResponseDTO.setTaskName(projection.getTaskName());
 
                 responseDTOMap.put(projection.getTaskId(), reportByProjectResponseDTO);
@@ -56,7 +56,7 @@ public class ReportServiceImpl implements ReportService {
                 responseDTOMap.put(projection.getProjectId(), reportByUserResponseDTO);
             }
             responseDTOMap.get(projection.getProjectId()).addTaskDTO(projection.getTaskId(),
-                    projection.getTypeTask(), projection.getTaskName(), projection.getHours());
+                    projection.getTaskType(), projection.getTaskName(), projection.getHours());
         }
         return new ArrayList<>(responseDTOMap.values());
     }

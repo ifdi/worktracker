@@ -1,19 +1,19 @@
 package com.worktracker.model.dto;
 
-import com.worktracker.model.TypeTask;
+import com.worktracker.model.TaskType;
 
 import java.util.Objects;
 
 public class ReportTaskDTO {
 
     private final Long taskId;
-    private final TypeTask typeTask;
+    private final TaskType taskType;
     private final String taskName;
     private Double taskHours;
 
-    public ReportTaskDTO(Long taskId, TypeTask typeTask, String taskName, Double taskHours) {
+    public ReportTaskDTO(Long taskId, TaskType taskType, String taskName, Double taskHours) {
         this.taskId = taskId;
-        this.typeTask = typeTask;
+        this.taskType = taskType;
         this.taskName = taskName;
         this.taskHours = Objects.requireNonNullElse(taskHours, 0.0);
     }
@@ -22,8 +22,8 @@ public class ReportTaskDTO {
         return taskId;
     }
 
-    public TypeTask getTypeTask() {
-        return typeTask;
+    public TaskType getTaskType() {
+        return taskType;
     }
 
     public String getTaskName() {
