@@ -45,19 +45,19 @@ public class ReportServiceImpl implements ReportService {
     @Override
     public List<ReportByUserResponseDTO> getReportByUser(Long userId, LocalDate startDate, LocalDate endDate) {
         List<ReportByUserProjection> projectionList = workRepository.getReportByUser(userId, startDate, endDate);
-        Map<Integer, ReportByUserResponseDTO> responseDTOMAp = new HashMap<>();
+        Map<Integer, ReportByUserResponseDTO> responseDTOMap = new HashMap<>();
 
         for (ReportByUserProjection projection : projectionList) {
-            if (!responseDTOMAp.containsKey(projection.getProjectId())) {
+            if (!responseDTOMap.containsKey(projection.getProjectId())) {
                 ReportByUserResponseDTO reportByUserResponseDTO = new ReportByUserResponseDTO();
                 reportByUserResponseDTO.setProjectId(projection.getProjectId());
                 reportByUserResponseDTO.setProjectName(projection.getProjectName());
 
-                responseDTOMAp.put(projection.getProjectId(), reportByUserResponseDTO);
+                responseDTOMap.put(projection.getProjectId(), reportByUserResponseDTO);
             }
-            responseDTOMAp.get(projection.getProjectId()).addTaskDTO(projection.getTaskId(),
+            responseDTOMap.get(projection.getProjectId()).addTaskDTO(projection.getTaskId(),
                     projection.getTypeTask(), projection.getTaskName(), projection.getHours());
         }
-        return new ArrayList<>(responseDTOMAp.values());
+        return new ArrayList<>(responseDTOMap.values());
     }
 }

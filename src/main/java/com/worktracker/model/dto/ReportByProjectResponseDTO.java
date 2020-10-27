@@ -7,7 +7,7 @@ import java.util.List;
 
 public class ReportByProjectResponseDTO {
 
-    List<ReportUserHoursDTO> users = new ArrayList<>();
+    private List<ReportUserHoursDTO> users = new ArrayList<>();
     private TypeTask typeTask;
     private String taskName;
     private Double totalHoursWork = 0.0;

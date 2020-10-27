@@ -1,5 +1,7 @@
 package com.worktracker.model.dto;
 
+import java.util.Objects;
+
 public class ReportUserHoursDTO {
 
     private final Long userId;
@@ -8,8 +10,8 @@ public class ReportUserHoursDTO {
 
     public ReportUserHoursDTO(Long userId, String userName, Double hours) {
         this.userName = userName;
-        this.hours = hours;
         this.userId = userId;
+        this.hours = Objects.requireNonNullElse(hours, 0.0);
     }
 
     public String getUserName() {

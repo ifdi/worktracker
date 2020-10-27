@@ -20,7 +20,7 @@ public class ReportController {
         this.reportService = reportService;
     }
 
-    @GetMapping("/project/{id}")
+    @GetMapping("/projects/{id}")
     public List<ReportByProjectResponseDTO> getReportByProject(@PathVariable Integer id,
                                                                @RequestParam String startDate,
                                                                @RequestParam String endDate) {
