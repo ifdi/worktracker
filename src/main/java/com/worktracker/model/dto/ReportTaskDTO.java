@@ -18,23 +18,23 @@ public class ReportTaskDTO {
         this.taskHours = Objects.requireNonNullElse(taskHours, 0.0);
     }
 
-        public Long getTaskId () {
-            return taskId;
-        }
-
-        public TypeTask getTypeTask () {
-            return typeTask;
-        }
-
-        public String getTaskName () {
-            return taskName;
-        }
-
-        public void addHours (Double taskHours){
-            this.taskHours += taskHours;
-        }
-
-        public Double getTaskHours () {
-            return taskHours;
-        }
+    public Long getTaskId() {
+        return taskId;
     }
+
+    public TypeTask getTypeTask() {
+        return typeTask;
+    }
+
+    public String getTaskName() {
+        return taskName;
+    }
+
+    public void addHours(Double taskHours) {
+        this.taskHours += taskHours;
+    }
+
+    public Double getTaskHours() {
+        return taskHours;
+    }
+}
