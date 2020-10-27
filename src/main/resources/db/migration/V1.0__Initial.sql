@@ -23,9 +23,9 @@ create table if not exists users
     email varchar (255) not null,
     name varchar (255),
     password varchar(255),
-	user_type varchar(15),
-	constraint user_pkey primary key (id),
-	constraint unique_email unique (email)
+    user_type varchar(15),
+    constraint user_pkey primary key (id),
+    constraint unique_email unique (email)
 );
 
 create table if not exists work
