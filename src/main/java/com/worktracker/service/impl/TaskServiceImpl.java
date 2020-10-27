@@ -28,7 +28,7 @@ public class TaskServiceImpl implements TaskService {
         Task task = new Task();
         task.setProject(project);
         task.setName(taskRequestDTO.getName());
-        task.setTypeTask(taskRequestDTO.getType());
+        task.setTaskType(taskRequestDTO.getType());
         task.setNote(taskRequestDTO.getNote());
 
         return taskRepository.save(task);

@@ -1,20 +1,20 @@
 package com.worktracker.model.dto;
 
-import com.worktracker.model.TypeUser;
 import com.worktracker.model.User;
+import com.worktracker.model.UserType;
 
 public class UserResponseDTO {
 
     private final Long id;
     private final String name;
     private final String email;
-    private final TypeUser type;
+    private final UserType type;
 
     public UserResponseDTO(User user) {
         this.id = user.getId();
         this.email = user.getEmail();
         this.name = user.getName();
-        this.type = user.getTypeUser();
+        this.type = user.getUserType();
     }
 
     public Long getId() {
@@ -29,7 +29,7 @@ public class UserResponseDTO {
         return email;
     }
 
-    public TypeUser getType() {
+    public UserType getType() {
         return type;
     }
 }

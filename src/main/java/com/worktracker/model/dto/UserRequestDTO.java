@@ -1,12 +1,12 @@
 package com.worktracker.model.dto;
 
-import com.worktracker.model.TypeUser;
+import com.worktracker.model.UserType;
 
 public class UserRequestDTO {
 
     private String name;
     private String email;
-    private TypeUser type;
+    private UserType type;
 
     public String getName() {
         return name;
@@ -16,7 +16,7 @@ public class UserRequestDTO {
         return email;
     }
 
-    public TypeUser getType() {
+    public UserType getType() {
         return type;
     }
 }

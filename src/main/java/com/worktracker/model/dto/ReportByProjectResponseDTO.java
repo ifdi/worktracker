@@ -1,6 +1,6 @@
 package com.worktracker.model.dto;
 
-import com.worktracker.model.TypeTask;
+import com.worktracker.model.TaskType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,7 @@ import java.util.List;
 public class ReportByProjectResponseDTO {
 
     private final List<ReportUserHoursDTO> users = new ArrayList<>();
-    private TypeTask typeTask;
+    private TaskType taskType;
     private String taskName;
     private Double totalHoursWork = 0.0;
 
@@ -17,12 +17,12 @@ public class ReportByProjectResponseDTO {
         return totalHoursWork;
     }
 
-    public TypeTask getTypeTask() {
-        return typeTask;
+    public TaskType getTaskType() {
+        return taskType;
     }
 
-    public void setTypeTask(TypeTask typeTask) {
-        this.typeTask = typeTask;
+    public void setTaskType(TaskType taskType) {
+        this.taskType = taskType;
     }
 
     public String getTaskName() {

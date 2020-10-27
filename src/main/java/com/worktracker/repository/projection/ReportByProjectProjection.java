@@ -1,12 +1,12 @@
 package com.worktracker.repository.projection;
 
-import com.worktracker.model.TypeTask;
+import com.worktracker.model.TaskType;
 
 public interface ReportByProjectProjection {
 
     Long getTaskId();
 
-    TypeTask getTypeTask();
+    TaskType getTaskType();
 
     String getTaskName();
 
