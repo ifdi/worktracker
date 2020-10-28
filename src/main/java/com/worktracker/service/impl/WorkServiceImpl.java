@@ -26,12 +26,12 @@ public class WorkServiceImpl implements WorkService {
 
     @Override
     public Work addWorkToTask(Long taskId, WorkRequestDTO workRequestDTO) {
-        Task task = taskService.getTask(taskId);
-        User user = userService.getUser(workRequestDTO.getUserId());
         if (workRequestDTO.getHours() <= 0) {
             throw new WorktrackerException("Invalid hours value");
         }
 
+        Task task = taskService.getTask(taskId);
+        User user = userService.getUser(workRequestDTO.getUserId());
         Work work = new Work();
         work.setTask(task);
         work.setUser(user);

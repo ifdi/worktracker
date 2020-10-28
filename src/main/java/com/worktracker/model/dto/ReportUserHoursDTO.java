@@ -9,8 +9,8 @@ public class ReportUserHoursDTO {
     private Double hours;
 
     public ReportUserHoursDTO(Long userId, String userName, Double hours) {
-        this.userName = userName;
         this.userId = userId;
+        this.userName = userName;
         this.hours = Objects.requireNonNullElse(hours, 0.0);
     }
 

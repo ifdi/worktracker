@@ -19,4 +19,16 @@ public class UserRequestDTO {
     public UserType getType() {
         return type;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setType(UserType type) {
+        this.type = type;
+    }
 }
