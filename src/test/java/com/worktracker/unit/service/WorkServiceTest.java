@@ -74,5 +74,4 @@ public class WorkServiceTest {
         verify(workRepository, times(0)).save(any());
     }
 
-
 }
