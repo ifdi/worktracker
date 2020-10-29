@@ -1,6 +1,5 @@
 package com.worktracker.unit.service;
 
-import com.worktracker.model.Task;
 import com.worktracker.model.TaskType;
 import com.worktracker.model.dto.ReportByProjectResponseDTO;
 import com.worktracker.model.dto.ReportByUserResponseDTO;
@@ -56,10 +55,10 @@ public class RepostServiceTest {
         assertEquals("Task Test Name", resultDto.getTaskName());
         assertEquals(3, resultDto.getTotalHoursWork(), 0);
         assertEquals(1, resultDto.getUsers().size());
-        ReportUserHoursDTO users = resultDto.getUsers().get(0);
-        assertEquals(Long.valueOf(1L), users.getUserId());
-        assertEquals("User Test Name", users.getUserName());
-        assertEquals(3, users.getHours(), 0);
+        ReportUserHoursDTO user = resultDto.getUsers().get(0);
+        assertEquals(Long.valueOf(1L), user.getUserId());
+        assertEquals("User Test Name", user.getUserName());
+        assertEquals(3, user.getHours(), 0);
     }
 
     @Test
@@ -81,11 +80,11 @@ public class RepostServiceTest {
         assertEquals("Project Test Name", resultDto.getProjectName());
         assertEquals(3.0, resultDto.getProjectHours(), 0);
         assertEquals(1, resultDto.getTasks().size());
-        ReportTaskDTO tasks = resultDto.getTasks().get(0);
-        assertEquals(Long.valueOf(1L), tasks.getTaskId());
-        assertEquals(TaskType.ENG, tasks.getTaskType());
-        assertEquals("Task Test Name", tasks.getTaskName());
-        assertEquals(3.0, tasks.getTaskHours(), 0);
+        ReportTaskDTO task = resultDto.getTasks().get(0);
+        assertEquals(Long.valueOf(1L), task.getTaskId());
+        assertEquals(TaskType.ENG, task.getTaskType());
+        assertEquals("Task Test Name", task.getTaskName());
+        assertEquals(3.0, task.getTaskHours(), 0);
     }
 
     private ReportByProjectProjection getReportByProjectProjection() {
