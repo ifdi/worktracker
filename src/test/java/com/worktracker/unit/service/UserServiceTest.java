@@ -35,9 +35,20 @@ public class UserServiceTest {
 
     @Test
     public void deleteUserSuccess() {
+        when(userRepository.existsById(1L)).thenReturn(true);
+
         userService.deleteUser(1L);
 
         verify(userRepository, times(1)).deleteById(1L);
+    }
+
+    @Test(expected = WorktrackerException.class)
+    public void deleteUserNonExist() {
+        when(userRepository.existsById(2L)).thenReturn(false);
+
+        userService.deleteUser(2L);
+
+        verify(userRepository, times(0)).deleteById(2L);
     }
 
     @Test

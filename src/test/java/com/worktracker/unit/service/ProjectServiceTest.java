@@ -15,7 +15,8 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
@@ -57,7 +58,7 @@ public class ProjectServiceTest {
         assertEquals("Test name", project.getName());
     }
 
-    @Test
+    @Test(expected = WorktrackerException.class)
     public void updateProjectNameNonExist() {
         when(projectRepository.findById(1)).thenReturn(Optional.empty());
 

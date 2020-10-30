@@ -11,4 +11,7 @@ import java.util.List;
 public interface UserRepository extends JpaRepository<User, Long> {
 
     List<User> findAllByUserType(UserType userType);
+
+    boolean existsByEmail(String email);
+
 }

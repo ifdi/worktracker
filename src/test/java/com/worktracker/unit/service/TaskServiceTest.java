@@ -69,7 +69,7 @@ public class TaskServiceTest {
         assertEquals("New note Test", task.getNote());
     }
 
-    @Test
+    @Test(expected = WorktrackerException.class)
     public void updateNoteNonExist() {
         when(taskRepository.findById(1L)).thenReturn(Optional.empty());
 
