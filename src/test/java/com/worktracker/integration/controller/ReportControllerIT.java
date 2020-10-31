@@ -18,12 +18,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
         executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
 public class ReportControllerIT extends BaseIT {
 
-    @Autowired
-    private WorkRepository workRepository;
-
-    @Autowired
-    private ObjectMapper objectMapper;
-
     @Test
     public void getReportByProjectSuccess() throws Exception {
         params.add("startDate", "2020-09-05");

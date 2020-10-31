@@ -47,8 +47,6 @@ public class UserServiceTest {
         when(userRepository.existsById(2L)).thenReturn(false);
 
         userService.deleteUser(2L);
-
-        verify(userRepository, times(0)).deleteById(2L);
     }
 
     @Test

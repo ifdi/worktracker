@@ -31,12 +31,6 @@ public class TaskControllerIT extends BaseIT {
     private TaskRepository taskRepository;
 
     @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private ProjectRepository projectRepository;
-
-    @Autowired
     private WorkRepository workRepository;
 
     @Autowired
@@ -168,6 +162,4 @@ public class TaskControllerIT extends BaseIT {
 
         assertEquals(0, workRepository.count());
     }
-
-
 }
