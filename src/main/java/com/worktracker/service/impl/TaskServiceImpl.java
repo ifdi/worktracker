@@ -36,11 +36,9 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public void updateNote(Long id, String note) {
-        Task task = taskRepository.findById(id).orElse(null);
-        if (task != null) {
-            task.setNote(note);
-            taskRepository.save(task);
-        }
+        Task task = getTask(id);
+        task.setNote(note);
+        taskRepository.save(task);
     }
 
     @Override

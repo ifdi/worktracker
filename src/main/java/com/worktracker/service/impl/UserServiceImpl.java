@@ -24,6 +24,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User createUser(UserRequestDTO userRequestDTO) {
+        if (userRequestDTO.getEmail() == null || userRepository.existsByEmail(userRequestDTO.getEmail())) {
+            throw new WorktrackerException("Email is not provided or is invalid.");
+        }
+
         User user = new User();
         user.setName(userRequestDTO.getName());
         user.setEmail(userRequestDTO.getEmail());
@@ -35,6 +39,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteUser(Long id) {
+        if (id == null || !userRepository.existsById(id)) {
+            throw new WorktrackerException("User does not exist.");
+        }
         userRepository.deleteById(id);
     }
 

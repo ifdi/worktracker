@@ -22,6 +22,9 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public Project createProject(ProjectRequestDTO projectRequestDTO) {
+        if (projectRequestDTO.getId() == null || projectRepository.existsById(projectRequestDTO.getId())) {
+            throw new WorktrackerException("Project is not provided or is invalid.");
+        }
         Project project = new Project();
         project.setId(projectRequestDTO.getId());
         project.setName(projectRequestDTO.getName());
@@ -31,11 +34,9 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public void updateProjectName(Integer id, String name) {
-        Project project = projectRepository.findById(id).orElse(null);
-        if (project != null) {
-            project.setName(name);
-            projectRepository.save(project);
-        }
+        Project project = getProject(id);
+        project.setName(name);
+        projectRepository.save(project);
     }
 
     @Override

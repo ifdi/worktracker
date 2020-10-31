@@ -6,4 +6,10 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ProjectRepository extends JpaRepository<Project, Integer> {
+
+    boolean existsById(Integer id);
+
+    boolean existsByName(String name);
+
+    void deleteById(Integer id);
 }

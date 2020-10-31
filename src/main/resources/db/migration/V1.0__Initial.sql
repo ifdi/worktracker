@@ -1,3 +1,5 @@
+CREATE SEQUENCE hibernate_sequence START 100;
+
 create table if not exists projects
 (
     id int not null,
