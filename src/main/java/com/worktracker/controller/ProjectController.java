@@ -5,12 +5,15 @@ import com.worktracker.model.dto.ProjectRequestDTO;
 import com.worktracker.model.dto.ProjectResponseDTO;
 import com.worktracker.model.dto.TaskResponseDTO;
 import com.worktracker.service.ProjectService;
+import io.swagger.annotations.*;
+import io.swagger.v3.oas.annotations.tags.Tags;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Api(tags = "Project Controller")
 @RestController
 @RequestMapping("/projects")
 public class ProjectController {

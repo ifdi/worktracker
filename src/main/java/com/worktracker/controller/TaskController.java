@@ -6,9 +6,11 @@ import com.worktracker.model.dto.TaskResponseDTO;
 import com.worktracker.model.dto.WorkRequestDTO;
 import com.worktracker.service.TaskService;
 import com.worktracker.service.WorkService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+@Api(tags = "Task Controller")
 @RestController
 @RequestMapping("/tasks")
 public class TaskController {

@@ -4,12 +4,14 @@ import com.worktracker.model.User;
 import com.worktracker.model.dto.UserRequestDTO;
 import com.worktracker.model.dto.UserResponseDTO;
 import com.worktracker.service.UserService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Api(tags = "User Controller")
 @RestController
 @RequestMapping("/users")
 public class UserController {
