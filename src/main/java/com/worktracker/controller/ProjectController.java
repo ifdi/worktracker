@@ -5,8 +5,7 @@ import com.worktracker.model.dto.ProjectRequestDTO;
 import com.worktracker.model.dto.ProjectResponseDTO;
 import com.worktracker.model.dto.TaskResponseDTO;
 import com.worktracker.service.ProjectService;
-import io.swagger.annotations.*;
-import io.swagger.v3.oas.annotations.tags.Tags;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
