@@ -4,6 +4,7 @@ import com.worktracker.exception.WorktrackerException;
 import com.worktracker.model.dto.ReportByProjectResponseDTO;
 import com.worktracker.model.dto.ReportByUserResponseDTO;
 import com.worktracker.service.ReportService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,6 +12,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.List;
 
+@Api(tags = "Report Controller")
 @RestController
 @RequestMapping("/reports")
 public class ReportController {
