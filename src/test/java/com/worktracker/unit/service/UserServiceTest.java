@@ -67,7 +67,7 @@ public class UserServiceTest {
         user.setName("Test");
         when(userRepository.findById(1L)).thenReturn(Optional.of(user));
 
-        User result = userService.getUser(1L);
+        User result = userService.getUserById(1L);
 
         assertNotNull(result);
         assertEquals("Test", result.getName());
@@ -77,7 +77,7 @@ public class UserServiceTest {
     public void getUserNonExist() {
         when(userRepository.findById(1L)).thenReturn(Optional.empty());
 
-        userService.getUser(1L);
+        userService.getUserById(1L);
     }
 
     @Test

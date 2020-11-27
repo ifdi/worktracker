@@ -3,6 +3,7 @@ package com.worktracker.service.impl;
 import com.worktracker.exception.WorktrackerException;
 import com.worktracker.model.User;
 import com.worktracker.model.UserType;
+import com.worktracker.model.dto.UpdatePasswordDTO;
 import com.worktracker.model.dto.UserRequestDTO;
 import com.worktracker.repository.UserRepository;
 import com.worktracker.service.UserService;
@@ -51,8 +52,25 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUser(Long id) {
+    public User getUserById(Long id) {
         return userRepository.findById(id)
                 .orElseThrow(() -> new WorktrackerException("User not found"));
+    }
+
+    @Override
+    public User getUserByEmailAndPass(String email, String password) {
+        return userRepository.findByEmailAndPassword(email, password)
+                .orElseThrow(() -> new WorktrackerException("User not found"));
+    }
+
+    @Override
+    public User changePassword(Long id, UpdatePasswordDTO updatePasswordDTO) {
+        User user = this.getUserById(id);
+        if (!user.getPassword().equals(updatePasswordDTO.getOldPassword())) {
+            throw new WorktrackerException("Invalid Password");
+        }
+        user.setPassword(updatePasswordDTO.getNewPassword());
+
+        return userRepository.save(user);
     }
 }

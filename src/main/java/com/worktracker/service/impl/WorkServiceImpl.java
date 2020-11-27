@@ -31,7 +31,7 @@ public class WorkServiceImpl implements WorkService {
         }
 
         Task task = taskService.getTask(taskId);
-        User user = userService.getUser(workRequestDTO.getUserId());
+        User user = userService.getUserById(workRequestDTO.getUserId());
         Work work = new Work();
         work.setTask(task);
         work.setUser(user);

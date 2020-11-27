@@ -52,7 +52,7 @@ public class WorkServiceTest {
         Task task = new Task();
         User user = new User();
         when(taskService.getTask(1L)).thenReturn(task);
-        when(userService.getUser(1L)).thenReturn(user);
+        when(userService.getUserById(1L)).thenReturn(user);
         when(workRepository.save(any())).thenAnswer(i -> i.getArguments()[0]);
 
         Work result = workService.addWorkToTask(1L, workRequestDTO);

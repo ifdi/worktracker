@@ -50,4 +50,8 @@ public class User {
     public UserType getUserType() {
         return userType;
     }
+
+    public String getPassword() {
+        return password;
+    }
 }

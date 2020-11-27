@@ -3,6 +3,7 @@ package com.worktracker.controller;
 import com.worktracker.exception.WorktrackerException;
 import com.worktracker.model.dto.ReportByProjectResponseDTO;
 import com.worktracker.model.dto.ReportByUserResponseDTO;
+import com.worktracker.service.AuthorizationService;
 import com.worktracker.service.ReportService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,16 +19,20 @@ import java.util.List;
 public class ReportController {
 
     private final ReportService reportService;
+    private final AuthorizationService authorizationService;
 
     @Autowired
-    public ReportController(ReportService reportService) {
+    public ReportController(ReportService reportService, AuthorizationService authorizationService) {
         this.reportService = reportService;
+        this.authorizationService = authorizationService;
     }
 
     @GetMapping("/projects/{id}")
     public List<ReportByProjectResponseDTO> getReportByProject(@PathVariable Integer id,
                                                                @RequestParam String startDate,
-                                                               @RequestParam String endDate) {
+                                                               @RequestParam String endDate,
+                                                               @RequestHeader("Authorization") String token) {
+        authorizationService.validateToken(token);
         LocalDate start;
         LocalDate end;
         try {
@@ -43,7 +48,9 @@ public class ReportController {
     @GetMapping("/users/{id}")
     public List<ReportByUserResponseDTO> getReportByUser(@PathVariable Long id,
                                                          @RequestParam String startDate,
-                                                         @RequestParam String endDate) {
+                                                         @RequestParam String endDate,
+                                                         @RequestHeader("Authorization") String token) {
+        authorizationService.validateToken(token);
         LocalDate start;
         LocalDate end;
         try {
