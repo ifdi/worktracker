@@ -10,6 +10,7 @@ import com.worktracker.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -33,7 +34,7 @@ public class UserServiceImpl implements UserService {
         user.setName(userRequestDTO.getName());
         user.setEmail(userRequestDTO.getEmail());
         user.setUserType(userRequestDTO.getType());
-        user.setPassword(DEFAULT_PASSWORD);
+        user.setPassword(DEFAULT_PASSWORD.toCharArray());
 
         return userRepository.save(user);
     }
@@ -58,7 +59,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserByEmailAndPass(String email, String password) {
+    public User getUserByEmailAndPass(String email, char[] password) {
         return userRepository.findByEmailAndPassword(email, password)
                 .orElseThrow(() -> new WorktrackerException("User not found"));
     }
@@ -66,7 +67,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User changePassword(Long id, UpdatePasswordDTO updatePasswordDTO) {
         User user = this.getUserById(id);
-        if (!user.getPassword().equals(updatePasswordDTO.getOldPassword())) {
+        if (!Arrays.equals(user.getPassword(), updatePasswordDTO.getOldPassword())) {
             throw new WorktrackerException("Invalid Password");
         }
         user.setPassword(updatePasswordDTO.getNewPassword());

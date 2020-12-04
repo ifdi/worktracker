@@ -30,7 +30,6 @@ public class ProjectController {
     @PostMapping
     public void createProject(@RequestBody ProjectRequestDTO projectRequestDTO,
                               @RequestHeader("Authorization") String token) {
-        authorizationService.validateToken(token);
         authorizationService.validateTokenAuthorization(token);
         projectService.createProject(projectRequestDTO);
     }

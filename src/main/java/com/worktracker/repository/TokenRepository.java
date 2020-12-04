@@ -11,6 +11,10 @@ public interface TokenRepository extends JpaRepository<Token, String> {
 
     boolean existsByToken(String token);
 
+    boolean existsByUserId(Long id);
+
+    void deleteByUserId(Long id);
+
     @Query(value = "select u.user_type as userType "
             + "       from users u "
             + "       join token t on t.user_id = u.id "

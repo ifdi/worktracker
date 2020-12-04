@@ -30,7 +30,6 @@ public class UserController {
     @PostMapping
     public UserResponseDTO createUser(@RequestBody UserRequestDTO userRequestDTO,
                                       @RequestHeader("Authorization") String token) {
-        authorizationService.validateToken(token);
         authorizationService.validateTokenAuthorization(token);
         User user = userService.createUser(userRequestDTO);
 
@@ -40,7 +39,6 @@ public class UserController {
     @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable long id,
                            @RequestHeader("Authorization") String token) {
-        authorizationService.validateToken(token);
         authorizationService.validateTokenAuthorization(token);
         userService.deleteUser(id);
     }
