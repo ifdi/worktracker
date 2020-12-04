@@ -195,7 +195,6 @@ public class ProjectControllerIT extends BaseIT {
                 .andExpect(jsonPath("$[0].name", is("project name 1")));
     }
 
-
     @Test
     public void getAllProjectsMissingHeader() throws Exception {
         mvc.perform(

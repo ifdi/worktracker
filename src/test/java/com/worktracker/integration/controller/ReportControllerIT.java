@@ -177,7 +177,6 @@ public class ReportControllerIT extends BaseIT {
                 .andExpect(status().isBadRequest());
     }
 
-
     @Test
     public void getReportByUserMissingHeader() throws Exception {
         params.add("startDate", "2020-09-05");

@@ -101,7 +101,6 @@ public class TaskControllerIT extends BaseIT {
                 .andExpect(status().isBadRequest());
     }
 
-
     @Test
     public void createTaskNonExistingAuth() throws Exception {
         assertFalse(tokenRepository.existsByToken("OQ_2nG-BYHlhQlCZ"));
