@@ -15,6 +15,8 @@ public interface TokenRepository extends JpaRepository<Token, String> {
 
     void deleteByUserId(Long id);
 
+    void deleteByToken(String token);
+
     @Query(value = "select u.user_type as userType "
             + "       from users u "
             + "       join token t on t.user_id = u.id "

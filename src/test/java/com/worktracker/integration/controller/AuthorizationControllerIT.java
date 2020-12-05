@@ -16,10 +16,10 @@ import static org.junit.Assert.assertTrue;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@Sql({"classpath:sql/login/insert-login-data.sql"})
-@Sql(value = {"classpath:sql/login/delete-login-data.sql"},
+@Sql({"classpath:sql/authorization/insert-authorization-data.sql"})
+@Sql(value = {"classpath:sql/authorization/delete-authorization-data.sql"},
         executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
-public class LoginControllerIT extends BaseIT {
+public class AuthorizationControllerIT extends BaseIT {
 
     @Autowired
     private TokenRepository tokenRepository;
@@ -32,11 +32,11 @@ public class LoginControllerIT extends BaseIT {
 
     @Test
     public void getTokenExistingUser() throws Exception {
-        assertTrue(userRepository.existsById(1L));
-        assertFalse(tokenRepository.existsByUserId(1L));
+        assertTrue(userRepository.existsById(2L));
+        assertFalse(tokenRepository.existsByUserId(2L));
         LoginRequestDTO loginRequestDTO = new LoginRequestDTO();
-        loginRequestDTO.setEmail("user1@email.com");
-        loginRequestDTO.setPassword("password1".toCharArray());
+        loginRequestDTO.setEmail("user2@email.com");
+        loginRequestDTO.setPassword("password2".toCharArray());
 
         mvc.perform(
                 MockMvcRequestBuilders
@@ -46,13 +46,13 @@ public class LoginControllerIT extends BaseIT {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.token").exists());
 
-        assertTrue(tokenRepository.existsByUserId(1L));
+        assertTrue(tokenRepository.existsByUserId(2L));
     }
 
     @Test
     public void getTokenExistingUserWrongPassword() throws Exception {
-        assertTrue(userRepository.existsById(1L));
-        assertFalse(tokenRepository.existsByUserId(1L));
+        assertTrue(userRepository.existsById(2L));
+        assertFalse(tokenRepository.existsByUserId(2L));
         LoginRequestDTO loginRequestDTO = new LoginRequestDTO();
         loginRequestDTO.setEmail("user1@email.com");
         loginRequestDTO.setPassword("password2".toCharArray());
@@ -64,6 +64,27 @@ public class LoginControllerIT extends BaseIT {
                         .content(objectMapper.writeValueAsString(loginRequestDTO)))
                 .andExpect(status().isBadRequest());
 
-        assertFalse(tokenRepository.existsByUserId(1L));
+        assertFalse(tokenRepository.existsByUserId(2L));
+    }
+
+    @Test
+    public void deleteTokenSuccess() throws Exception {
+        assertTrue(tokenRepository.existsByToken("OQ_2nG-BYHlhQlCC"));
+
+        mvc.perform(
+                MockMvcRequestBuilders
+                        .delete("/logout")
+                        .header("Authorization", "OQ_2nG-BYHlhQlCC"))
+                .andExpect(status().isOk());
+
+        assertFalse(tokenRepository.existsByToken("OQ_2nG-BYHlhQlCC"));
+    }
+
+    @Test
+    public void deleteTokenMissingHeader() throws Exception {
+        mvc.perform(
+                MockMvcRequestBuilders
+                        .delete("/logout"))
+                .andExpect(status().isBadRequest());
     }
 }

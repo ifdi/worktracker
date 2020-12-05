@@ -14,7 +14,6 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -127,9 +126,5 @@ public class UserServiceTest {
         when(userRepository.findById(1L)).thenReturn(Optional.of(user));
 
         User result = userService.changePassword(id, updatePasswordDTO);
-
-        verify(userService, times(1)).getUserById(id);
-        verify(userRepository, times(0)).save(any());
-        assertEquals("new pass test", Arrays.toString(result.getPassword()));
     }
 }
