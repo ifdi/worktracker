@@ -9,3 +9,6 @@ values (1, 'user1@email.com', 'User name 1', 'password1', 'EMPLOYEE');
 
 insert into work (id, date, hours, task_id, user_id)
 values (1, '2020-10-05', 5, 1, 1);
+
+insert into token (token, user_id)
+values ('OQ_2nG-BYHlhQlCC', 1);

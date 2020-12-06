@@ -94,6 +94,6 @@ public class TaskServiceTest {
     public void getTaskNonExist() {
         when(taskRepository.findById(1L)).thenReturn(Optional.empty());
 
-        Task result = taskService.getTask(1L);
+        taskService.getTask(1L);
     }
 }

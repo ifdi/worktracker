@@ -3,12 +3,14 @@ package com.worktracker.service.impl;
 import com.worktracker.exception.WorktrackerException;
 import com.worktracker.model.User;
 import com.worktracker.model.UserType;
+import com.worktracker.model.dto.UpdatePasswordDTO;
 import com.worktracker.model.dto.UserRequestDTO;
 import com.worktracker.repository.UserRepository;
 import com.worktracker.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -32,7 +34,7 @@ public class UserServiceImpl implements UserService {
         user.setName(userRequestDTO.getName());
         user.setEmail(userRequestDTO.getEmail());
         user.setUserType(userRequestDTO.getType());
-        user.setPassword(DEFAULT_PASSWORD);
+        user.setPassword(DEFAULT_PASSWORD.toCharArray());
 
         return userRepository.save(user);
     }
@@ -51,8 +53,25 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUser(Long id) {
+    public User getUserById(Long id) {
         return userRepository.findById(id)
                 .orElseThrow(() -> new WorktrackerException("User not found"));
+    }
+
+    @Override
+    public User getUserByEmailAndPass(String email, char[] password) {
+        return userRepository.findByEmailAndPassword(email, password)
+                .orElseThrow(() -> new WorktrackerException("User not found"));
+    }
+
+    @Override
+    public User changePassword(Long id, UpdatePasswordDTO updatePasswordDTO) {
+        User user = this.getUserById(id);
+        if (!Arrays.equals(user.getPassword(), updatePasswordDTO.getOldPassword())) {
+            throw new WorktrackerException("Invalid Password");
+        }
+        user.setPassword(updatePasswordDTO.getNewPassword());
+
+        return userRepository.save(user);
     }
 }

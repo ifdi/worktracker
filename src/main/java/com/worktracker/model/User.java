@@ -14,7 +14,7 @@ public class User {
 
     private String email;
 
-    private String password;
+    private char[] password;
 
     @Enumerated(EnumType.STRING)
     private UserType userType;
@@ -27,7 +27,7 @@ public class User {
         this.email = email;
     }
 
-    public void setPassword(String password) {
+    public void setPassword(char[] password) {
         this.password = password;
     }
 
@@ -49,5 +49,9 @@ public class User {
 
     public UserType getUserType() {
         return userType;
+    }
+
+    public char[] getPassword() {
+        return password;
     }
 }
