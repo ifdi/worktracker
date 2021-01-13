@@ -14,6 +14,10 @@
   "basePath": "/",
   "tags": [
     {
+      "name": "Authorization Controller",
+      "description": "Authorization Controller"
+    },
+    {
       "name": "Project Controller",
       "description": "Project Controller"
     },
@@ -31,6 +35,87 @@
     }
   ],
   "paths": {
+    "/login": {
+      "post": {
+        "tags": [
+          "Authorization Controller"
+        ],
+        "summary": "getTokenExistingUser",
+        "operationId": "getTokenExistingUserUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "loginRequestDTO",
+            "description": "loginRequestDTO",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LoginRequestDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/LoginResponseDTO"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/logout": {
+      "delete": {
+        "tags": [
+          "Authorization Controller"
+        ],
+        "summary": "deleteToken",
+        "operationId": "deleteTokenUsingDELETE",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
     "/projects": {
       "get": {
         "tags": [
@@ -40,6 +125,15 @@
         "operationId": "getAllProjectsUsingGET",
         "produces": [
           "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization",
+            "required": true,
+            "type": "string"
+          }
         ],
         "responses": {
           "200": {
@@ -75,6 +169,13 @@
           "*/*"
         ],
         "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization",
+            "required": true,
+            "type": "string"
+          },
           {
             "in": "body",
             "name": "projectRequestDTO",
@@ -118,6 +219,13 @@
           "*/*"
         ],
         "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization",
+            "required": true,
+            "type": "string"
+          },
           {
             "name": "id",
             "in": "path",
@@ -167,6 +275,13 @@
         ],
         "parameters": [
           {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization",
+            "required": true,
+            "type": "string"
+          },
+          {
             "name": "id",
             "in": "path",
             "description": "id",
@@ -208,6 +323,13 @@
           "*/*"
         ],
         "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization",
+            "required": true,
+            "type": "string"
+          },
           {
             "name": "endDate",
             "in": "query",
@@ -264,6 +386,13 @@
           "*/*"
         ],
         "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization",
+            "required": true,
+            "type": "string"
+          },
           {
             "name": "endDate",
             "in": "query",
@@ -324,6 +453,13 @@
         ],
         "parameters": [
           {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization",
+            "required": true,
+            "type": "string"
+          },
+          {
             "in": "body",
             "name": "taskRequestDTO",
             "description": "taskRequestDTO",
@@ -369,6 +505,13 @@
           "*/*"
         ],
         "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization",
+            "required": true,
+            "type": "string"
+          },
           {
             "name": "id",
             "in": "path",
@@ -421,6 +564,13 @@
         ],
         "parameters": [
           {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization",
+            "required": true,
+            "type": "string"
+          },
+          {
             "name": "id",
             "in": "path",
             "description": "id",
@@ -472,6 +622,13 @@
         ],
         "parameters": [
           {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization",
+            "required": true,
+            "type": "string"
+          },
+          {
             "in": "body",
             "name": "userRequestDTO",
             "description": "userRequestDTO",
@@ -513,6 +670,15 @@
         "produces": [
           "*/*"
         ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -547,6 +713,13 @@
         ],
         "parameters": [
           {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization",
+            "required": true,
+            "type": "string"
+          },
+          {
             "name": "id",
             "in": "path",
             "description": "id",
@@ -570,9 +743,91 @@
           }
         }
       }
+    },
+    "/users/{id}/password": {
+      "put": {
+        "tags": [
+          "User Controller"
+        ],
+        "summary": "changePassword",
+        "operationId": "changePasswordUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "body",
+            "name": "updatePasswordDTO",
+            "description": "updatePasswordDTO",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdatePasswordDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
     }
   },
   "definitions": {
+    "LoginRequestDTO": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "title": "LoginRequestDTO"
+    },
+    "LoginResponseDTO": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string"
+        }
+      },
+      "title": "LoginResponseDTO"
+    },
     "ProjectRequestDTO": {
       "type": "object",
       "properties": {
@@ -738,6 +993,24 @@
         }
       },
       "title": "TaskResponseDTO"
+    },
+    "UpdatePasswordDTO": {
+      "type": "object",
+      "properties": {
+        "newPassword": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "oldPassword": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "title": "UpdatePasswordDTO"
     },
     "UserRequestDTO": {
       "type": "object",
