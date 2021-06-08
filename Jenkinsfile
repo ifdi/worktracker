@@ -2,22 +2,23 @@ pipeline {
     agent any
     tools {
         maven 'maven'
+        dockerTool 'docker'
+    }
+    environment {
+        DOCKER_HOST = "tcp://host.docker.internal:2375"
     }
     stages {
         stage('Build and Unit Tests') {
             steps {
-                sh 'mvn clean package -Dmaven.test.skip=true'
-                sh 'mvn -Dtest=com.worktracker.unit.** test'
+                sh 'mvn clean package'
             }
         }
         stage('Integration Test and SonarQube analysis') {
             when {
-                anyOf {
-                    branch 'develop'; branch 'master'
-                }
+                branch 'master'
             }
             steps {
-                sh 'mvn -Dtest=com.worktracker.integration.** test'
+                sh 'mvn verify -PIT'
                 withSonarQubeEnv('sonarqube') {
                     catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
                         sh 'mvn sonar:sonar'
@@ -27,9 +28,7 @@ pipeline {
         }
         stage {
             when {
-                anyOf {
-                    branch 'develop'; branch 'master'
-                }
+                branch 'master'
             }
             steps {
                 timeout(time: 1, unit: 'HOURS') {
@@ -40,6 +39,4 @@ pipeline {
             }
         }
     }
-
-
-    }
+}
