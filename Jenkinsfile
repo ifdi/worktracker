@@ -26,7 +26,7 @@ pipeline {
                 }
             }
         }
-        stage {
+        stage('SonarQube Quality Gate') {
             when {
                 branch 'master'
             }
