@@ -16,11 +16,7 @@ pipeline {
             }
             steps {
                 sh 'mvn verify -PIT'
-                withSonarQubeEnv('sonarqube') {
-                    catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
-                        sh 'mvn sonar:sonar'
-                    }
-                }
+                withSonarQubeEnv('sonarqube')
             }
         }
         stage('SonarQube Quality Gate') {
@@ -29,9 +25,7 @@ pipeline {
             }
             steps {
                 timeout(time: 1, unit: 'HOURS') {
-                    catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
-                        waitForQualityGate abortPipeline: false
-                    }
+                    waitForQualityGate abortPipeline: true
                 }
             }
         }
