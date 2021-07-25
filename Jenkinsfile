@@ -16,7 +16,9 @@ pipeline {
             }
             steps {
                 sh 'mvn verify -PIT'
-                withSonarQubeEnv('sonarqube')
+                withSonarQubeEnv('sonarqube') {
+                    sh 'mvn sonar:sonar'
+                }
             }
         }
         stage('SonarQube Quality Gate') {
