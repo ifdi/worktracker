@@ -6,6 +6,7 @@ Java Web Application that can be used to track and get reports about the project
 * [Java 11](https://openjdk.java.net/)
 * [Maven](https://maven.apache.org/)
 * [PostgreSQL](https://hub.docker.com/_/postgres)
+* [Docker](https://www.docker.com/) - required to run integration tests
 
 ### Build and run
 ```shell script
